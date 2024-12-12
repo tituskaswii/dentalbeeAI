@@ -3,13 +3,25 @@ A simple Notes App made using React JS, Redux and Django Rest Framework.
 
 <br/>
 
-<div align="center"><img src="https://i.ibb.co/JzgS4VP/ba" alt="base" border="0"><p>Home Page</p></div>
+<div align="center"><img src="https://ibb.co/nbD8wTC" alt="base" border="0"><p>Home Page</p></div>
 
-<div align="center"><img src="https://i.ibb.co/qMVKhQF/aleg" alt="alert" border="0"><p>React Alert Component</p></div>
+<div align="center"><img src="https://ibb.co/8dHv5Hj" alt="alert" border="0"><p>React Alert Component</p></div>
 
-<div align="center"><img src="https://i.ibb.co/y4Hp0Gz/log" alt="login" border="0"><p>Login Page</p></div>
+<div align="center"><img src="https://ibb.co/svWDnD1" alt="login" border="0"><p>Login Page</p></div>
 
-<div align="center"><img src="https://i.ibb.co/cbJK841/regis" alt="register" border="0"><p>Register Page</p></div>
+<div align="center"><img src="https://ibb.co/Ph1HKLw" alt="register" border="0"><p>Register Page</p></div>
+
+<div align="center"><img src="https://ibb.co/BCDLYRX" alt="base" border="0"><p>Create Note</p></div>
+
+<div align="center"><img src="https://ibb.co/zZ96kQn" alt="base" border="0"><p>View Note</p></div>
+
+<div align="center"><img src="https://ibb.co/MVS8hJR" alt="base" border="0"><p>Update Note</p></div>
+
+<div align="center"><img src="https://ibb.co/SPKX8bk" alt="base" border="0"><p>Delete Note Page</p></div>
+
+<div align="center"><img src="https://ibb.co/9W2c8jT" alt="base" border="0"><p>Record audio</p></div>
+
+<div align="center"><img src="https://ibb.co/Cv1gTZD" alt="base" border="0"><p>Record audio</p></div>
 
 ## Technologies used:
 
@@ -93,4 +105,4 @@ Now let's run our frontend so that we can visually interact with our backend API
 - `npm install` will install all the needed modules for the frontend to work
 - `npm run start` to start the frontend development server
 - Visit `http://localhost:3000` in your browser (normally ReactJS would do this for us)
-- Login/Register and test the application!
+- Login/Register and test the application!!!
