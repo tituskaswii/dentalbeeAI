@@ -5,23 +5,23 @@ A simple Notes App made using React JS, Redux and Django Rest Framework.
 
 <div align="center"><img src="https://i.ibb.co/ZVh1f3m/Dashboard.png" alt="base" border="0"><p>Home Page</p></div>
 
-<div align="center"><img src="https://ibb.co/8dHv5Hj" alt="alert" border="0"><p>React Alert Component</p></div>
+<div align="center"><img src="https://i.ibb.co/1dkyqk9/Alert.png" alt="alert" border="0"><p>React Alert Component</p></div>
 
-<div align="center"><img src="https://ibb.co/svWDnD1" alt="login" border="0"><p>Login Page</p></div>
+<div align="center"><img src="https://i.ibb.co/yn4MtMk/Login.png" alt="login" border="0"><p>Login Page</p></div>
 
-<div align="center"><img src="https://ibb.co/Ph1HKLw" alt="register" border="0"><p>Register Page</p></div>
+<div align="center"><img src="https://i.ibb.co/85PZqC6/Register.png" alt="register" border="0"><p>Register Page</p></div>
 
-<div align="center"><img src="https://ibb.co/BCDLYRX" alt="base" border="0"><p>Create Note</p></div>
+<div align="center"><img src="https://i.ibb.co/XCBXGTh/Create-note.png" alt="base" border="0"><p>Create Note</p></div>
 
-<div align="center"><img src="https://ibb.co/zZ96kQn" alt="base" border="0"><p>View Note</p></div>
+<div align="center"><img src="https://i.ibb.co/FzZHPmx/View-note.png" alt="base" border="0"><p>View Note</p></div>
 
-<div align="center"><img src="https://ibb.co/MVS8hJR" alt="base" border="0"><p>Update Note</p></div>
+<div align="center"><img src="https://i.ibb.co/Z8XHJbh/Update-edit-note.png" alt="base" border="0"><p>Update Note</p></div>
 
-<div align="center"><img src="https://ibb.co/SPKX8bk" alt="base" border="0"><p>Delete Note Page</p></div>
+<div align="center"><img src="https://i.ibb.co/bPrgZT4/delete-note.png" alt="base" border="0"><p>Delete Note Page</p></div>
 
-<div align="center"><img src="https://ibb.co/9W2c8jT" alt="base" border="0"><p>Record audio</p></div>
+<div align="center"><img src="https://i.ibb.co/hH7btjw/Record-audio-permision.png" alt="base" border="0"><p>Record audio</p></div>
 
-<div align="center"><img src="https://ibb.co/Cv1gTZD" alt="base" border="0"><p>Record audio</p></div>
+<div align="center"><img src="https://i.ibb.co/0rZmD3M/record-audio.png" alt="base" border="0"><p>Record audio</p></div>
 
 ## Technologies used:
 
