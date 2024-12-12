@@ -1,0 +1,141 @@
+/* Container for notes section */
+.notes-container {
+    border: 1px solid #007bff; /* Rounded border around notes section */
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .notes {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* 8 posts per row */
+    gap: 15px; /* Space between posts */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .note-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .note-card:hover {
+    transform: scale(1.05); /* Slight zoom effect when hovering */
+  }
+  
+  .record-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .record-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .view-note-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .view-note-btn:hover {
+    background-color: #485058;
+  }
+  
+  /* Popup (Zoomed-in) styling */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .popup-content h2 {
+    margin-bottom: 10px;
+  }
+  
+  .popup-content p {
+    margin-bottom: 10px;
+  }
+  
+  .popup-content button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .popup-content button:hover {
+    background-color: #0056b3;
+  }
+  
+  .start-recording-btn {
+    background-color: #FF4081;
+    color: white;
+  }
+  
+  .stop-recording-btn {
+    background-color: #FF6347;
+    color: white;
+  }
+  
+  .toggle-recording-link {
+    cursor: pointer;
+    color: #FF4081;
+    text-decoration: underline;
+  }
+  
+  .audio-player audio {
+    width: 100%;
+  }
+
+  /* Add border around the form */
+.form-container {
+    border: 2px solid #000; /* Solid border with 2px thickness */
+    padding: 20px; /* Add padding inside the border */
+    border-radius: 8px; /* Optional: rounded corners */
+    margin-bottom: 10px; /* Add margin below the form */
+  }
+  
+  /* Close button outside the form */
+  .close-btn {
+    margin-left: auto;
+    display: block;
+    margin-top: 10px;
+  }
