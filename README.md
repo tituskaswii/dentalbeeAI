@@ -3,7 +3,7 @@ A simple Notes App made using React JS, Redux and Django Rest Framework.
 
 <br/>
 
-<div align="center"><img src="https://ibb.co/nbD8wTC" alt="base" border="0"><p>Home Page</p></div>
+<div align="center"><img src="https://i.ibb.co/ZVh1f3m/Dashboard.png" alt="base" border="0"><p>Home Page</p></div>
 
 <div align="center"><img src="https://ibb.co/8dHv5Hj" alt="alert" border="0"><p>React Alert Component</p></div>
 
