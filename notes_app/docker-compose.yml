@@ -1,0 +1,59 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: notes_backend
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_DB: notes_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5433
+    volumes:
+      - ./backend/media:/app/media
+    networks:
+      - default
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  db:
+    image: postgres:13
+    container_name: db
+    environment:
+      POSTGRES_DB: notes_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin", "-d", "notes_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - default
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: notes_frontend
+    ports:
+      - "3000:80"
+    networks:
+      - default
+
+volumes:
+  db_data:
+
+networks:
+  default:
+    driver: bridge

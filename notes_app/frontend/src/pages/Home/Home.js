@@ -38,9 +38,21 @@ const Home = ({ notes, getNotes, updateNote, deleteNote }) => {
     setRecording(false);
   };
 
+  // const handleAudioStop = (recordedBlob) => {
+  //   setAudioBlob(recordedBlob.blob); // Store the recorded audio blob
+  //   setAudioUrl(URL.createObjectURL(recordedBlob.blob)); // Create a URL to play the audio
+  // };
+
   const handleAudioStop = (recordedBlob) => {
-    setAudioBlob(recordedBlob.blob); // Store the recorded audio blob
-    setAudioUrl(URL.createObjectURL(recordedBlob.blob)); // Create a URL to play the audio
+    const timestamp = new Date().toISOString(); // Generate a timestamp
+    const fileName = `audio_${timestamp}.webm`; // Assign a name with .webm extension
+  
+    const audioFile = new File([recordedBlob.blob], fileName, {
+      type: recordedBlob.blob.type
+    });
+  
+    setAudioBlob(audioFile); // Store the audio file
+    setAudioUrl(URL.createObjectURL(audioFile)); // Create a URL for playback
   };
 
   const handleEditSubmit = (e) => {
@@ -53,9 +65,8 @@ const Home = ({ notes, getNotes, updateNote, deleteNote }) => {
         audio: audioBlob // Attach the audio blob to the update payload
       };
 
-      console.log('Updated Note in Home.js:', updatedNote);
+      console.log('Updated Note details in Home.js:', updatedNote);
       updateNote(updatedNote);
-      //updateNote: (note) => dispatch(updateNote(note.id, { title: note.title, desc: note.desc })),
       setSelectedNote(null); // Close the popup after editing
       setAudioBlob(null); // Clear the audio blob after submission
       setAudioUrl(null); // Clear the audio URL after submission
@@ -75,32 +86,48 @@ const Home = ({ notes, getNotes, updateNote, deleteNote }) => {
       <AddNote />
 
       <div>
-        <br />
-      <h2>List of available Notes</h2>
-      <div className="notes-container">
-        <div className="notes">
-          {notes.map((note) => (
-            <div className="note-card" key={note.id}>
-              <Note note={note} />
-              <button
-                className="view-note-btn"
-                onClick={() => handleNoteClick(note)}
-              >
-                View Note
-              </button>
-              <FaTrash
-                className="trash-icon"
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent triggering the click event for viewing the note
-                  handleTrashClick(note.id);
-                }}
-                title="Delete Note"
-              />
+  <br />
+  <h2>List of Available Notes</h2>
+  <div className="notes-container">
+    <div className="notes">
+      {notes.map((note) => (
+        <div className="note-card" key={note.id}>
+          <Note note={note} />
+          <div className="note-card">
+            <FaTrash
+              className="trash-icon"
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering the click event for viewing the note
+                handleTrashClick(note.id);
+              }}
+              title="Delete Note"
+            />
+            <button
+              className="view-note-btn"
+              onClick={() => handleNoteClick(note)}
+            >
+              View Note
+            </button>
+          </div>
+          <br />
+          {note.audio && ( // Only render if note.audio is not null or empty
+            <div className="note-card">
+              {console.log(`Audio URL: http://127.0.0.1:8000/${note.audio}`)}
+              <audio controls>
+                <source
+                  src={`http://127.0.0.1:8000/${note.audio}`}
+                  type="audio/webm"
+                />
+                Your browser does not support the audio element.
+              </audio>
             </div>
-          ))}
+          )}
         </div>
-      </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       {/* Popup for zoomed-in note details */}
       {selectedNote && (
@@ -110,7 +137,7 @@ const Home = ({ notes, getNotes, updateNote, deleteNote }) => {
             <div className="form-container">
               <form onSubmit={handleEditSubmit}>
                 <div className="input-container">
-                  <label htmlFor="edit-title"> <strong>Note Title: </strong> </label>
+                  <label htmlFor="edit-title"><strong>Note Title: </strong></label>
                   <input
                     id="edit-title"
                     type="text"
@@ -121,7 +148,7 @@ const Home = ({ notes, getNotes, updateNote, deleteNote }) => {
                 </div>
 
                 <div className="input-container">
-                  <label htmlFor="edit-body"><strong> Note Description: </strong></label>
+                  <label htmlFor="edit-body"><strong>Note Description: </strong></label>
                   <textarea
                     id="edit-body"
                     value={editBody}
@@ -130,16 +157,26 @@ const Home = ({ notes, getNotes, updateNote, deleteNote }) => {
                   />
                 </div>
 
-                {/* Link to toggle audio recording */}
+                {/* Note Audio Playback Section */}
+                {selectedNote.audio && (
+                  <div className="note-card">
+                    <label htmlFor="edit-body"><strong>Note Audio Playback: </strong></label>
+                    <audio controls>
+                      <source src={`http://127.0.0.1:8000/${selectedNote.audio}`} type="audio/webm" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+                )}
+                <br />
+
+                {/* Link to toggle audio recording with dynamic text */}
                 <a
                   href="#"
                   onClick={handleToggleRecording}
                   className="toggle-recording-link"
                   style={{ display: 'block', textAlign: 'left' }}
                 >
-                  {isRecordingVisible
-                    ? 'Hide Audio Recording'
-                    : 'Add Audio Recording'}
+                  {selectedNote.audio ? 'Change Audio Recording' : 'Add Audio Recording'}
                 </a>
 
                 {/* Audio recording section */}
@@ -204,6 +241,7 @@ const Home = ({ notes, getNotes, updateNote, deleteNote }) => {
           </div>
         </div>
       )}
+
     </div>
   );
 };
@@ -217,7 +255,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getNotes: () => dispatch(getNotes()),
-    updateNote: (note) => dispatch(updateNote({id: note.id, title: note.title, desc: note.desc })),
+    updateNote: (note) => dispatch(updateNote(note)), // Pass the complete updatedNote object
     deleteNote: (id) => dispatch(deleteNote(id))
   };
 };

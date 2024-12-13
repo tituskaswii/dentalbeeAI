@@ -13,7 +13,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Where media files are stored on 
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'YOUR_SECRET_TOKEN_HERE'
+SECRET_KEY = '3565883793682624286446cfhchsr763ywtwtuwre7ug37dv7f7f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,13 +74,34 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'notes_db',
+#         'USER': 'admin',
+#         'PASSWORD': 'admin',
+#         'HOST': 'db',
+#         'PORT': 5432,
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'notes_db'),
+        'USER': os.getenv('DB_USER', 'admin'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'admin'),
+        'HOST': 'db',  # The service name from docker-compose.yml
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
