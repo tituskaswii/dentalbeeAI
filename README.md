@@ -58,7 +58,7 @@ A single `note` consists of the following data:
 
 ## Option 1. Running the system as a container (Docker)
 
-Here is a comprehensive guide on how to set up and run your Dockerized project on a local machine or laptop. This guide assumes that you are working with a project that includes Dockerized services such as a PostgreSQL database, a backend API, and any other services (e.g., microservices, web apps) that are part of the project.
+Here is a comprehensive guide on how to set up and run the Notes management app [Dockerized] on a local machine or laptop.
 
 ---
 
@@ -103,13 +103,13 @@ This should display the installed version of Docker Compose.
 Start by cloning the project repository to your local machine. Replace `<your-repository-url>` with the URL of your project:
 
 ```bash
-git clone <your-repository-url>
-cd <your-project-folder>
+git clone https://github.com/tituskaswii/dentalbeeAI.git
+cd notes_app
 ```
 
 ### Step 2: Configure Environment Variables
 
-Your project likely requires environment variables for configuring things like database credentials, ports, and other application settings. These variables are often stored in `.env` files or can be passed directly into your Docker containers.
+Applications requires environment variables for configuring things like database credentials, ports, and other application settings. These variables are often stored in `.env` files or can be passed directly into your Docker containers but for thIS Notes management app, the settings are defined in the docker-compose.yaml file and settings.py file in the backend service.
 
 1. **Check for a `.env.example` file**:  
    Many projects include a sample `.env` file (e.g., `.env.example`) with all the required variables. Copy it and rename it to `.env`:
@@ -211,7 +211,7 @@ This is useful if you want to completely clean up your environment.
 
 2. **Database Connection Issues**: Ensure that the database service is fully initialized before your application attempts to connect. Sometimes, services that depend on the database may fail if the database is not yet ready. You may want to add a health check or retry mechanism for the dependent services.
 
-3. **Missing Dependencies**: If you encounter issues with missing dependencies or broken builds, ensure all required files and dependencies (such as `Dockerfile`, `.env`, etc.) are in place.
+3. **Missing Dependencies**: you will not encounter issues with missing dependencies or broken builds because all required files and dependencies (such as `Dockerfile`, `.env`, etc.) are in place.
 
 ---
 
@@ -221,66 +221,7 @@ That's it! You should now have the Dockerized Notes Management app running local
 
 ---
 
-### Example README section
-
-Here’s a sample section you could use in your README file:
-
-```markdown
-## Running the Project Locally with Docker
-
-### Prerequisites
-
-- Docker (Engine & Docker Compose) installed on your machine.
-
-### Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone <your-repository-url>
-   cd <your-project-folder>
-   ```
-
-2. Configure environment variables:
-
-   Copy the `.env.example` file and rename it to `.env`, then modify the values as necessary:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-3. Build the Docker containers:
-
-   ```bash
-   docker-compose build
-   ```
-
-4. Start the services:
-
-   ```bash
-   docker-compose up
-   ```
-
-   Or in detached mode:
-
-   ```bash
-   docker-compose up -d
-   ```
-
-5. Access the application at `http://localhost:<port>`, depending on your configuration.
-
-6. To stop the services:
-
-   ```bash
-   docker-compose down
-   ```
-
-For more detailed information on troubleshooting or Docker commands, refer to the Docker documentation.
-```
-
-This guide should help anyone new to the project get up and running quickly using Docker on their local machine.
-
-## Option 2. RUnning the system services (Frontend & Backend) Separately
+## Option 2. Running the system services (Frontend & Backend) Separately (Not recommended, use option 1 above for a quicker setup)
 
 I developed both the Django backend and the ReactJS frontend separately.
 One of the many ways to run this project is to **run the Django backend API alone** and then **use the React frontend to consume the API**.
