@@ -53,7 +53,9 @@ const Home = ({ notes, getNotes, updateNote, deleteNote }) => {
         audio: audioBlob // Attach the audio blob to the update payload
       };
 
-      updateNote(updatedNote); // Dispatch the update action
+      console.log('Updated Note in Home.js:', updatedNote);
+      updateNote(updatedNote);
+      //updateNote: (note) => dispatch(updateNote(note.id, { title: note.title, desc: note.desc })),
       setSelectedNote(null); // Close the popup after editing
       setAudioBlob(null); // Clear the audio blob after submission
       setAudioUrl(null); // Clear the audio URL after submission
@@ -215,8 +217,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getNotes: () => dispatch(getNotes()),
-    updateNote: (note) => dispatch(updateNote(note)),
-    deleteNote: (id) => dispatch(deleteNote(id)) // Add deleteNote action
+    updateNote: (note) => dispatch(updateNote({id: note.id, title: note.title, desc: note.desc })),
+    deleteNote: (id) => dispatch(deleteNote(id))
   };
 };
 

@@ -42,47 +42,69 @@ export const addNote = ({ title, desc }) => {
     }
 }
 
-export const updateNote = (id, { title, body }) => {
+export const updateNote = (updatedNote) => {
+    console.log('Data Received :', updatedNote);
     return function (dispatch, getState) {
+      // Destructure id, title, desc, audio from the updatedNote object
+      const { id, title, desc, audio } = updatedNote;
+
+      console.error('Data update Inside : ' + updatedNote);
+
+      // Check if the id exists
+      if (!id) {
+        console.error('ID is missing or undefined');
+        return;
+      }
+
+      console.log('ID:', id);  // Logging the id to ensure it's correct
+
+      // Create FormData object
       const formData = new FormData();
       formData.append('title', title);
-      formData.append('body', body);
+      formData.append('desc', desc);
+      if (audio) {
+        formData.append('audio', audio); // Only append audio if it's not null
+      }
 
+      console.log('Sending update request for note id:', id);
+
+      // Send the PUT request with updated data
       axios.put(`http://localhost:8000/api/v1/notes/${id}/`, formData, {
         headers: {
           'Authorization': `Token ${getState().auth.token}`
         }
       })
-        .then(res => {
-          if (res.status === 200) {
+      .then(res => {
+        if (res.status === 200) {
+          dispatch(addAlert({
+            type: 'success',
+            alert: 'Note Updated!'
+          }));
+          dispatch({
+            type: NOTE_UPDATED,
+            payload: res.data.note
+          });
+        }
+      })
+      .catch(e => {
+        switch (e.response.status) {
+          case 401:
+            dispatch(logoutUser());
+            break;
+          default:
             dispatch(addAlert({
-              type: 'success',
-              alert: 'Note Updated!'
+              type: 'error',
+              alert: e.response.data.detail
             }));
-            dispatch({
-              type: NOTE_UPDATED,
-              payload: res.data.note
-            });
-          }
-        })
-        .catch(e => {
-          switch (e.response.status) {
-            case 401:
-              dispatch(logoutUser());
-              break;
-            default:
-              dispatch(addAlert({
-                type: 'error',
-                alert: e.response.data.detail
-              }));
-          }
-        });
+        }
+      });
     };
   }
 
 export const deleteNote = (id) => {
     return function (dispatch, getState) {
-        axios.delete(`http://localhost:8000/api/v1/notes/${id}/`, {
+        console.log('Delete ID inside Axio:', id);
+        axios.delete(`http://localhost:8000/api/v1/notes/delete/${id}/`, {
             headers: {
                 'Authorization': `Token ${getState().auth.token}`
             }
