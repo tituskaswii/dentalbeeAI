@@ -161,9 +161,9 @@ This will show the status of all the containers. If everything is set up correct
 
 Depending on the configuration, your project may expose different ports for various services (e.g., a backend API, a web application, or a database). To access the application:
 
-1. **Web Application**: If you have a web app running inside a container, it may be accessible on `http://localhost:<exposed-port>`. Check your `docker-compose.yml` for the specific port.
+1. **Web Application**: If you have a web app running inside a container, it may be accessible on `http://localhost:3000 or http://127.0.0.1:3000`. Check the `docker-compose.yml` for the specific port or to adjust it fi need be.
 
-2. **API**: If your backend API is running, it will likely be accessible via `http://localhost:<api-port>`.
+2. **API**: If the backend API is running, it will be accessible via `http://localhost:8000 or http://127.0.0.1:8000`.
 
 3. **Database**: You can connect to the PostgreSQL database running in a container using a PostgreSQL client. For example, using `psql`:
 
@@ -217,7 +217,7 @@ This is useful if you want to completely clean up your environment.
 
 ### Conclusion
 
-That's it! You should now have your Dockerized project running locally. You can scale, modify configurations, and test your application locally before deploying it to production. Using Docker ensures that the environment is consistent across different setups, making it easier to collaborate and manage dependencies.
+That's it! You should now have the Dockerized Notes Management app running locally.
 
 ---
 
