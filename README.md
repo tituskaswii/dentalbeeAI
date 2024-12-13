@@ -37,7 +37,7 @@ Backend:
 - Backend - `Django` + `Django Rest Framework`
 
 Database:
-- Database - `SQLite3`. But you can easily plug and use the DB of your choice.
+- Database - `Postgres`. But you can easily plug and use the DB of your choice, e.g. SQLite, Mysql.
 
 ## Description
 
